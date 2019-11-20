@@ -2,24 +2,30 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
-const ParentComponent = () => {
+const ParentComponent = props => {
   return (
     <div>
       <div>This is parent component</div>
-      <ChildComponent />
+      <ChildComponent add={props.add} />
     </div>
   );
 };
 
-const ChildComponent = () => {
+const ChildComponent = props => {
+  props.add(1, 2);
   return <div>This is child component</div>;
 };
 
 function App() {
+  const add = (a, b) => {
+    const sum = a + b;
+    console.log("Enterede here", sum);
+    return sum;
+  };
   return (
     <div className="App">
       Sample app
-      <ParentComponent />
+      <ParentComponent add={add} />
     </div>
   );
 }
