@@ -1,16 +1,16 @@
 import React from "react";
-import { BrowserRouter , Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "./Login";
+import SignUp from "./SignUp";
 import PhotoDashboard from "./PhotoDashboard";
 import About from "./About";
-import SignUp from "./SignUp";
 
 const AppRoutes = () => {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-        <Login />
+          <Login />
         </Route>
         <Route exact path="/login">
           <Login />
