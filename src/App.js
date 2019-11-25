@@ -1,13 +1,9 @@
 import React from "react";
+import AppRoutes from "./routes";
 
-import "./App.css";
-
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      Sample app
-      <p>Sample text</p>
-    </div>
+  <AppRoutes/>
   );
 }
 
