@@ -1,2 +1,4 @@
 import { combineReducers } from "redux";
-export default combineReducers({});
+import photoEditor from "./photoEditor";
+
+export default combineReducers({ photoEditor });
