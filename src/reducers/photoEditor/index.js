@@ -7,9 +7,9 @@ const initialState = {
 const photoEditor = (state = initialState, action) => {
   switch (action.type) {
     case INCREMENT_COUNT:
-      return { ...state, count: (state.count += 1) };
+      return { count: ++state.count };
     case DECREMENT_COUNT:
-      return { ...state, count: --state.count };
+      return { count: --state.count };
     case SET_COUNT:
       return { ...state, count: action.payload.count };
     default:
