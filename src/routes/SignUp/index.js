@@ -1,37 +1,44 @@
 import React from "react";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
+import { useSelector, useDispatch } from 'react-redux';
 import {
   INCREMENT_COUNT,
   DECREMENT_COUNT,
   SET_COUNT
 } from "../../reducers/constants";
 
-const SignUp = ({ count, increment, decrement, setCount }) => {
+// const SignUp = ({ count, increment, decrement, setCount }) => {
+const SignUp = () => {
+  const count=useSelector(state=>state.count);
+  const dispatch=useDispatch();
   return (
     <div>
       <h2>Sign Up</h2>
       <div>{count}</div>
-      <button onClick={increment}>IncrementCount</button>
-      <button onClick={decrement}>DecrementCount</button>
+      {/* <button onClick={increment}>IncrementCount</button> */}
+      <button onClick={ ()=>dispatch({ type: INCREMENT_COUNT })}>IncrementCount</button>
+      {/* <button onClick={decrement}>DecrementCount</button> */}
+      <button onClick={ ()=>dispatch({ type: DECREMENT_COUNT })}>DecrementCount</button>
       <input
         type="number"
-        onChange={e => setCount(e.target.value)}
+        onChange={e => dispatch({type:SET_COUNT,payload:{count:e.target.value}})}
         value={count}
       />
     </div>
   );
 };
 
-const mapStateToProps = state => {
-  return { count: state.photoEditor.count };
-};
+// const mapStateToProps = state => {
+//   return { count: state.photoEditor.count };
+// };
 
-const mapDisPatchToProps = dispatch => {
-  return {
-    increment: () => dispatch({ type: INCREMENT_COUNT }),
-    decrement: () => dispatch({ type: DECREMENT_COUNT }),
-    setCount: count => dispatch({ type: SET_COUNT, payload: { count } })
-  };
-};
+// const mapDisPatchToProps = dispatch => {
+//   return {
+    // increment: () => dispatch({ type: INCREMENT_COUNT }),
+//     decrement: () => dispatch({ type: DECREMENT_COUNT }),
+//     setCount: count => dispatch({ type: SET_COUNT, payload: { count } })
+//   };
+// };
 
-export default connect(mapStateToProps, mapDisPatchToProps)(SignUp);
+// export default connect(mapStateToProps, mapDisPatchToProps)(SignUp);
+export default SignUp;
