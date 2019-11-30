@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import {
   INCREMENT_COUNT,
   DECREMENT_COUNT,
@@ -7,13 +7,13 @@ import {
 } from "../../reducers/constants";
 
 const SignUp = () => {
-
-  const {count} = useSelector(state => ({count:state.photoEditor.count}))
+  const { count } = useSelector(state => ({ count: state.photoEditor.count }));
   const dispatch = useDispatch();
 
-  const increment = () => dispatch({ type: INCREMENT_COUNT })
-  const decrement = () => dispatch({ type: DECREMENT_COUNT })
-  const setCount =  e => dispatch({type:SET_COUNT,payload:{count:e.target.value}})
+  const increment = () => dispatch({ type: INCREMENT_COUNT });
+  const decrement = () => dispatch({ type: DECREMENT_COUNT });
+  const setCount = e =>
+    dispatch({ type: SET_COUNT, payload: { count: e.target.value } });
 
   return (
     <div>
@@ -21,11 +21,7 @@ const SignUp = () => {
       <div>{count}</div>
       <button onClick={increment}>IncrementCount</button>
       <button onClick={decrement}>DecrementCount</button>
-      <input
-        type="number"
-        onChange={setCount}
-        value={count}
-      />
+      <input type="number" onChange={setCount} value={count} />
     </div>
   );
 };
