@@ -1,15 +1,15 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import styled from "styled-components";
 import {
   INCREMENT_COUNT,
   DECREMENT_COUNT,
   SET_COUNT
 } from "../../reducers/constants";
-import styled from "styled-components";
 
 const Button = styled.button`
-  background: "white";
-  color: "white";
+  background: white;
+  color: white;
   font-size: 1em;
   margin: 1em;
   padding: 0.25em 1em;
@@ -20,7 +20,7 @@ const Button = styled.button`
 const Input = styled.input`
   padding: 0.75em;
   margin: 1em;
-  color: "red";
+  color: red;
   background: papayawhip;
   border-radius: 3px;
 `;
