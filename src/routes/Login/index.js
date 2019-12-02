@@ -8,7 +8,7 @@ let Login = () => {
     console.log("Values", values);
   };
 
-  return <LoginSignUpTemplate route="Login" onSubmit={onSubmit} />;
+  return <LoginSignUpTemplate formName="Login" onSubmit={onSubmit} />;
 };
 
 Login = reduxForm({
