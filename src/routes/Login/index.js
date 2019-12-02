@@ -1,12 +1,17 @@
 import React from "react";
 import LoginSignUpTemplate from "../components/LoginSignUpTemplate";
 import { reduxForm } from "redux-form";
+import { formConstants } from "../../utils/constants";
 
 let Login = () => {
-  return <LoginSignUpTemplate route="Login" />;
+  const onSubmit = values => {
+    console.log("Values", values);
+  };
+
+  return <LoginSignUpTemplate route="Login" onSubmit={onSubmit} />;
 };
 
 Login = reduxForm({
-  form: "Login"
+  form: formConstants.loginFormConst
 })(Login);
 export default Login;
