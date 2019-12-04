@@ -1,7 +1,7 @@
 import React from "react";
 // import { useSelector, useDispatch } from "react-redux";
 // import styled from "styled-components";
-import LoginSignUpTemplate from "../components/LoginSignUpTemplate";
+import LoginSignUpTemplate from "../../components/LoginSignUpTemplate";
 // import {
 //   INCREMENT_COUNT,
 //   DECREMENT_COUNT,

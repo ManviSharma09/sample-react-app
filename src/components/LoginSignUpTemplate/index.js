@@ -2,30 +2,34 @@ import React from "react";
 import styled from "styled-components";
 import { Field } from "redux-form";
 import { reduxForm } from "redux-form";
-import photo from "../../../utils/images/wallpaper.jpg";
+import photo from "../../utils/images/wallpaper.jpg";
 import { Link } from "react-router-dom";
 
 const OuterDiv = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   flex-direction: column;
-  color: #a20b48;
+  color: #f9fcfa;
   background-image: url(${photo});
+  width: 100%;
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
-  right: 0;
-  left: 0;
+  background-position: center bottom;
 `;
 
 const FormDiv = styled.div`
-  align-self: flex-start;
-  padding-left: 100px;
+  margin-right: 10%;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 30px;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 `;
 
 const Button = styled.button`
-  background: #a20b48;
+  background: #8d913f;
   color: white;
   font-size: 1em;
   margin-top: 2em;
@@ -33,19 +37,19 @@ const Button = styled.button`
   margin-right: 1em;
   margin-bottom: 2em;
   padding: 0.25em 1em;
-  border: 2px solid #a20b48;
+  border: 2px solid #8d913f;
   border-radius: 5px;
   width: 225px;
   height: 50px;
   align-self: center;
   &:hover {
     background: white;
-    color: #a20b48;
+    color: #8d913f;
   }
 `;
 
 const Label = styled.label`
-  font-size: 20px;
+  font-size: 15px;
 `;
 
 const FormEntryDiv = styled.div`
@@ -60,17 +64,17 @@ const Input = styled.input`
 
   border-radius: 5px;
   &:focus {
-    border-color: #a20b48;
+    border-color: #efe493;
     outline: none;
+    background-color: #efe493;
   }
   &:hover {
-    background-color: #a20b48;
   }
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: #a20b48;
+  color: #f9fcfa;
 `;
 
 const LoginSignUpTemplate = ({ formName, handleSubmit }) => {
@@ -120,13 +124,9 @@ const LoginSignUpTemplate = ({ formName, handleSubmit }) => {
           <Button type="submit">Submit</Button>
         </form>
         {formName === "Login" ? (
-          <StyledLink to="/signup">
-            Signup,if you do not have an account
-          </StyledLink>
+          <StyledLink to="/signup">Do not have an account? SignUp</StyledLink>
         ) : (
-          <StyledLink to="/login">
-            Login,if you already have an account
-          </StyledLink>
+          <StyledLink to="/login">Already have an account? Login</StyledLink>
         )}
       </FormDiv>
     </OuterDiv>

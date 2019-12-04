@@ -1,5 +1,5 @@
 import React from "react";
-import LoginSignUpTemplate from "../components/LoginSignUpTemplate";
+import LoginSignUpTemplate from "../../components/LoginSignUpTemplate";
 import { reduxForm } from "redux-form";
 import { formConstants } from "../../utils/constants";
 
