@@ -11,8 +11,8 @@ const OuterDiv = styled.div`
   align-items: flex-end;
   justify-content: center;
   flex-direction: column;
-  color: rgba(0, 0, 0, 0.6);
-  font-weight: bold;
+  color: white;
+  /* font-weight: bold; */
   background-image: url(${photo});
   width: 100%;
   height: 100vh;
