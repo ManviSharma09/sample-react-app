@@ -4,8 +4,8 @@ import { reduxForm } from "redux-form";
 import { formConstants } from "../../utils/constants";
 
 let Login = () => {
-  const onSubmit = values => {
-    console.log("Values", values);
+  const onSubmit = event => {
+    console.log("event", event);
   };
 
   return <LoginSignUpTemplate formName="Login" onSubmit={onSubmit} />;

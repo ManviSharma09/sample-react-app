@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Field } from "redux-form";
 import { reduxForm } from "redux-form";
 import photo from "../../utils/images/wallpaper.jpg";
 import { Link } from "react-router-dom";
+import { signUpFormData, loginFormData } from "../../utils/constants";
+import InputFieldForForm from "./InputFieldForForm";
 
 const OuterDiv = styled.div`
   display: flex;
@@ -28,8 +29,12 @@ const FormDiv = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
 `;
 
+const StyledHeading = styled.h1`
+  color: rgba(0, 0, 0, 0.9);
+`;
+
 const Button = styled.button`
-  background: #8d913f;
+  background-color: rgba(0, 0, 0, 0.7);
   color: white;
   font-size: 1em;
   margin-top: 2em;
@@ -37,96 +42,53 @@ const Button = styled.button`
   margin-right: 1em;
   margin-bottom: 2em;
   padding: 0.25em 1em;
-  border: 2px solid #8d913f;
+  border: 2px rgba(0, 0, 0, 0.7);
   border-radius: 5px;
   width: 225px;
-  height: 50px;
+  height: 45px;
   align-self: center;
-  &:hover {
-    background: white;
-    color: #8d913f;
-  }
-`;
-
-const Label = styled.label`
-  font-size: 15px;
-`;
-
-const FormEntryDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-`;
-
-const Input = styled.input`
-  width: 250px;
-  height: 25px;
-
-  border-radius: 5px;
-  &:focus {
-    border-color: #efe493;
-    outline: none;
-    background-color: #efe493;
-  }
-  &:hover {
-  }
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: #f9fcfa;
+  color: rgba(0, 0, 0, 0.7);
+  font-style: italic;
+  font-weight: bold;
 `;
 
 const LoginSignUpTemplate = ({ formName, handleSubmit }) => {
-  const renderField = ({ input, type }) => (
-    <div>
-      <Input {...input} type={type} />
-    </div>
-  );
+  const [formToShow, updateFormToShow] = useState([]);
+  useEffect(() => {
+    const formToShow = formName === "SignUp" ? signUpFormData : loginFormData;
+    updateFormToShow(formToShow);
+  }, [formName]);
 
   return (
     <OuterDiv>
       <FormDiv>
-        <h1>{formName}</h1>
+        <StyledHeading>{formName}</StyledHeading>
         <form onSubmit={handleSubmit}>
-          {formName === "SignUp" ? (
-            <FormEntryDiv>
-              <Label htmlFor="firstName">First Name</Label>
-              <Field name="firstName" component={renderField} type="text" />
-            </FormEntryDiv>
-          ) : null}
-          {formName === "SignUp" ? (
-            <FormEntryDiv>
-              <Label htmlFor="lastName">Last Name</Label>
-              <Field name="lastName" component={renderField} type="text" />
-            </FormEntryDiv>
-          ) : null}
-
-          <FormEntryDiv>
-            <Label htmlFor="email">Email</Label>
-            <Field name="email" component={renderField} type="email" />
-          </FormEntryDiv>
-          <FormEntryDiv>
-            <Label htmlFor="password">Password</Label>
-            <Field name="password" component={renderField} type="password" />
-          </FormEntryDiv>
-          {formName === "SignUp" ? (
-            <FormEntryDiv>
-              <Label htmlFor="confirmPassword">Confirm Password</Label>
-              <Field
-                name="confirmPassword"
-                component={renderField}
-                type="password"
+          {formToShow.map(item => {
+            return (
+              <InputFieldForForm
+                key={item.name}
+                name={item.name}
+                labelName={item.label}
+                type={item.type}
               />
-            </FormEntryDiv>
-          ) : null}
+            );
+          })}
 
           <Button type="submit">Submit</Button>
         </form>
         {formName === "Login" ? (
-          <StyledLink to="/signup">Do not have an account? SignUp</StyledLink>
+          <span>
+            Do not have an account? <StyledLink to="/signup">SignUp</StyledLink>
+          </span>
         ) : (
-          <StyledLink to="/login">Already have an account? Login</StyledLink>
+          <span>
+            Already have an account? <StyledLink to="/login">Login</StyledLink>
+          </span>
         )}
       </FormDiv>
     </OuterDiv>
