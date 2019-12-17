@@ -12,7 +12,7 @@ const InputFieldForForm = ({ name, labelName, type }) => {
   const FormEntryDiv = styled.div`
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    margin-top: 10px;
   `;
 
   const Input = styled.input`
@@ -21,7 +21,6 @@ const InputFieldForForm = ({ name, labelName, type }) => {
     border-radius: 5px;
     &:focus {
       border-color: rgba(0, 0, 0, 0.5);
-      /* outline: none; */
       background-color: rgba(0, 0, 0, 0.5);
     }
   `;

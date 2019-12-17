@@ -5,14 +5,13 @@ import photo from "../../utils/images/wallpaper.jpg";
 import { Link } from "react-router-dom";
 import { signUpFormData, loginFormData } from "../../utils/constants";
 import InputFieldForForm from "./InputFieldForForm";
-
+import user from "../../utils/images/user.png";
 const OuterDiv = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: center;
   flex-direction: column;
   color: white;
-  /* font-weight: bold; */
   background-image: url(${photo});
   width: 100%;
   height: 100vh;
@@ -22,6 +21,7 @@ const OuterDiv = styled.div`
 `;
 
 const FormDiv = styled.div`
+  margin-top: 50px;
   margin-right: 10%;
   padding-left: 50px;
   padding-right: 50px;
@@ -31,6 +31,8 @@ const FormDiv = styled.div`
 `;
 
 const StyledHeading = styled.h1`
+  display: flex;
+  justify-content: center;
   color: rgba(0, 0, 0, 0.9);
 `;
 
@@ -50,6 +52,26 @@ const Button = styled.button`
   align-self: center;
 `;
 
+const ProfileDiv = styled.div`
+  margin-right: 0px;
+  height: 100px;
+  margin-top: -50px;
+`;
+
+const PhotoDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  margin-left: 80px;
+  margin-right: 80px;
+  border-radius: 50px;
+  background-image: url(${user});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  border: 2px solid;
+`;
+
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: rgba(0, 0, 0, 0.7);
@@ -67,6 +89,9 @@ const LoginSignUpTemplate = ({ formName, handleSubmit }) => {
   return (
     <OuterDiv>
       <FormDiv>
+        <ProfileDiv>
+          <PhotoDiv />
+        </ProfileDiv>
         <StyledHeading>{formName}</StyledHeading>
         <form onSubmit={handleSubmit}>
           {formToShow.map(item => {
