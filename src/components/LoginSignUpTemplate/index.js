@@ -101,6 +101,7 @@ const LoginSignUpTemplate = ({ formName, handleSubmit }) => {
                 name={item.name}
                 labelName={item.label}
                 type={item.type}
+                validate={item.validation}
               />
             );
           })}
