@@ -1,5 +1,11 @@
 import React from "react";
+import Cropper from "cropperjs";
+
 const PhotoDashboard = () => {
-  return <h2>PhotoDashboard</h2>;
+  return (
+    <div>
+      <h2>PhotoDashboard</h2>
+    </div>
+  );
 };
 export default PhotoDashboard;
