@@ -6,11 +6,14 @@ import { Provider } from "react-redux";
 import store from './store';
 
 import App from "./App";
+import Firebase, {FirebaseContext} from "./components/Firebase";
 
 ReactDOM.render(
+  <FirebaseContext.Provider value={new Firebase()}>
   <Provider store={store}>
    <App />
-  </Provider>, 
+  </Provider>
+  </FirebaseContext.Provider>, 
 document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change
