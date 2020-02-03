@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import styled from "styled-components";
 import { reduxForm } from "redux-form";
 import photo from "../../utils/images/wallpaper.jpg";
@@ -80,11 +80,7 @@ const StyledLink = styled(Link)`
 `;
 
 const LoginSignUpTemplate = ({ formName, handleSubmit }) => {
-  const [formToShow, updateFormToShow] = useState([]);
-  useEffect(() => {
-    const formToShow = formName === "SignUp" ? signUpFormData : loginFormData;
-    updateFormToShow(formToShow);
-  }, [formName]);
+  const formToShow = formName === "SignUp" ? signUpFormData : loginFormData;
 
   return (
     <OuterDiv>
