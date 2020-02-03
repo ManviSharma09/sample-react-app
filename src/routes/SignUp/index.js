@@ -1,21 +1,19 @@
 import React from "react";
-import {withRouter} from "react-router-dom";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import LoginSignUpTemplate from "../../components/LoginSignUpTemplate";
-import { withFirebase } from "../../components/Firebase";
 
-let SignUp = (props) => {
-  const onSubmit = event => {
-    console.log("event", event,"props",props);
-    const {firstName,lastName,email,password}=event;
-    props.firebase.doCreateUserWithEmailAndPasword(email,password)
-    .then(authUser =>{
-      props.history.push("/photodashboard");
-    }).catch(error=>{
-      console.log("error",error)
-    })
+let SignUp = props => {
+  const handleSubmit = event => {
+    props.signUpRequest(event);
   };
-
-  return <LoginSignUpTemplate formName="SignUp" onSubmit={onSubmit} />;
+  return <LoginSignUpTemplate formName="SignUp" onSubmit={handleSubmit} />;
 };
 
-export default withRouter(withFirebase(SignUp));
+const mapDispatchToProps = dispatch => {
+  return {
+    signUpRequest: value =>
+      dispatch({ type: "SIGN_UP_REQUEST", payload: value })
+  };
+};
+export default connect(null, mapDispatchToProps)(withRouter(SignUp));
