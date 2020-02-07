@@ -23,19 +23,18 @@ const Input = styled.input`
     background-color: rgba(0, 0, 0, 0.5);
   }
 `;
-const ErrorDiv=styled.div`
-font-weight:bold;
-font-size: 13px;`;
+const ErrorDiv = styled.div`
+  font-weight: bold;
+  font-size: 13px;
+`;
 
-
-const renderField = ({ input, type , meta: { touched, error }}) => {
-  
-   return(<div>
-    <Input {...input} type={type} />
-    {touched &&
-        ((error && <ErrorDiv>{error}</ErrorDiv>))}
-  </div>)
-  
+const renderField = ({ input, type, meta: { touched, error } }) => {
+  return (
+    <div>
+      <Input {...input} type={type} />
+      {touched && error && <ErrorDiv>{error}</ErrorDiv>}
+    </div>
+  );
 };
 const InputFieldForForm = ({ name, labelName, type, validate }) => {
   return (

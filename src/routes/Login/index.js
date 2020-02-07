@@ -3,15 +3,15 @@ import LoginSignUpTemplate from "../../components/LoginSignUpTemplate";
 import { reduxForm } from "redux-form";
 import { formConstants } from "../../utils/constants";
 
-let Login = () => {
-  const onSubmit = event => {
-    console.log("event", event);
-  };
-
-  return <LoginSignUpTemplate formName="Login" onSubmit={onSubmit} />;
+let Login = props => {
+  const { handleSubmit } = props;
+  return <LoginSignUpTemplate formName="Login" onSubmit={handleSubmit} />;
 };
-
+const onSubmit = (event, dispatch) => {
+  dispatch({ type: "LOGIN_REQUEST", payload: event });
+};
 Login = reduxForm({
-  form: formConstants.loginFormConst
+  form: formConstants.loginFormConst,
+  onSubmit
 })(Login);
 export default Login;
