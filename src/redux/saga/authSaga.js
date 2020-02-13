@@ -1,8 +1,8 @@
 import firebase from "firebase";
 import { toastr } from "react-redux-toastr";
 import { push } from "connected-react-router";
-import { put, takeLatest } from "redux-saga/effects";
 import actionTypes from "../actionConstants/index";
+import { put, takeLatest } from "redux-saga/effects";
 import { startSpinner, stopSpinner } from "../actions/loaderActions";
 
 export function* signUpRequest(action) {
