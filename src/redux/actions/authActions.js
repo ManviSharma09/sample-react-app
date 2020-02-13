@@ -37,3 +37,9 @@ export const loginFailure = () => {
     type: actionTypes.LOGIN_FAILURE
   };
 };
+
+export const signOutRequest = () => {
+  return {
+    type: actionTypes.SIGN_OUT_REQUEST
+  };
+};

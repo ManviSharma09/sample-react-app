@@ -2,8 +2,24 @@ import firebase from "firebase";
 import { toastr } from "react-redux-toastr";
 import { push } from "connected-react-router";
 import { put, takeLatest } from "redux-saga/effects";
-import actionTypes from "../redux/actionConstants/index";
-import { startSpinner, stopSpinner } from "../redux/actions/loaderActions";
+import actionTypes from "../actionConstants/index";
+import { startSpinner, stopSpinner } from "../actions/loaderActions";
+
+export function* signUpRequest(action) {
+  yield put(startSpinner());
+  const { email, password } = action.payload;
+  try {
+    yield firebase.auth().createUserWithEmailAndPassword(email, password);
+    const user = yield firebase.auth().currentUser;
+    if (user) {
+      yield put(push("/photoDashboard"));
+    }
+  } catch (e) {
+    console.log("error is", e);
+    toastr.error(`${e}`);
+  }
+  yield put(stopSpinner());
+}
 
 export function* loginRequest(action) {
   yield put(startSpinner());
@@ -21,23 +37,17 @@ export function* loginRequest(action) {
   yield put(stopSpinner());
 }
 
-export function* signUpRequest(action) {
-  yield put(startSpinner());
-  const { email, password } = action.payload;
+export function* signOutRequest(action) {
   try {
-    yield firebase.auth().createUserWithEmailAndPassword(email, password);
-    const user = yield firebase.auth().currentUser;
-    if (user) {
-      yield put(push("/photoDashboard"));
-    }
+    yield firebase.auth().signOut();
+    yield put(push("/login"));
   } catch (e) {
-    console.log("#### e", e);
-    toastr.error(`${e}`);
+    console.log("error is", e);
   }
-  yield put(stopSpinner());
 }
 
 export default [
   takeLatest(actionTypes.SIGN_UP_REQUEST, signUpRequest),
-  takeLatest(actionTypes.LOGIN_REQUEST, loginRequest)
+  takeLatest(actionTypes.LOGIN_REQUEST, loginRequest),
+  takeLatest(actionTypes.SIGN_OUT_REQUEST, signOutRequest)
 ];

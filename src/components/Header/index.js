@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import settingsIcon from "../../utils/images/settingsIcon.svg";
+import { signOutRequest } from "../../redux/actions/authActions";
 
 const HeaderDiv = styled.div`
   height: 60px;
@@ -26,7 +27,7 @@ const Header = () => {
         alt="settings icon"
         onClick={() => {
           console.log("Entered here");
-          dispatch({ type: "SIGN_OUT" });
+          dispatch(signOutRequest());
         }}
       ></StyledIcon>
     </HeaderDiv>
