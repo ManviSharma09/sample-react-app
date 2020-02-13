@@ -2,9 +2,9 @@ import logger from "redux-logger";
 import createSagaMiddleware from "redux-saga";
 import { routerMiddleware } from "connected-react-router";
 import { createStore, applyMiddleware } from "redux";
-import rootSaga from "../saga";
+import rootSaga from "../../saga";
 import history from "./history";
-import rootReducer from "../reducers";
+import rootReducer from "../../reducers";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(

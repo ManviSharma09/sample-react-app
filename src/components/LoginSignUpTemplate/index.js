@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import user from "../../utils/images/user.png";
 import InputFieldForForm from "./InputFieldForForm";
 import photo from "../../utils/images/wallpaper.jpg";
-import ActivityIndicator from "../ActivityIndicator";
+import SpinnerModal from "../SpinnerModal";
 import { signUpFormData, loginFormData } from "../../utils/constants";
 
 const OuterDiv = styled.div`
@@ -91,8 +91,18 @@ const SpinnerContainer = styled.div`
 const LoginSignUpTemplate = ({ formName, onSubmit }) => {
   const formToShow = formName === "SignUp" ? signUpFormData : loginFormData;
 
+  const { authSpinner } = useSelector(state => ({
+    authSpinner: state.auth.authSpinner
+  }));
+
   return (
     <OuterDiv>
+      {authSpinner && (
+        <SpinnerContainer>
+          <SpinnerModal />
+        </SpinnerContainer>
+      )}
+
       <FormDiv>
         <ProfileDiv>
           <PhotoDiv />
@@ -110,14 +120,6 @@ const LoginSignUpTemplate = ({ formName, onSubmit }) => {
               />
             );
           })}
-          {useSelector(state =>
-            state.auth.authSpinner === true ? (
-              <SpinnerContainer>
-                <ActivityIndicator />
-              </SpinnerContainer>
-            ) : null
-          )}
-
           <Button type="submit">Submit</Button>
         </form>
         {formName === "Login" ? (
