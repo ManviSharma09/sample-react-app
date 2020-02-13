@@ -2,6 +2,7 @@ import React from "react";
 import { reduxForm } from "redux-form";
 import { withRouter } from "react-router-dom";
 import { formConstants } from "../../utils/constants";
+import { signUpRequest } from "../../redux/actions/authActions";
 import LoginSignUpTemplate from "../../components/LoginSignUpTemplate";
 
 let SignUp = props => {
@@ -10,7 +11,7 @@ let SignUp = props => {
 };
 
 const onSubmit = (event, dispatch) => {
-  dispatch({ type: "SIGN_UP_REQUEST", payload: event });
+  dispatch(signUpRequest(event));
 };
 SignUp = reduxForm({ form: formConstants.signUpFormConst, onSubmit })(SignUp);
 export default withRouter(SignUp);
