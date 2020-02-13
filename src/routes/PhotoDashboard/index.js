@@ -4,7 +4,7 @@ import Cropper from "cropperjs";
 const PhotoDashboard = () => {
   return (
     <div>
-      <h2>PhotoDashboard</h2>
+      <h2>PhotoDashboard here ta da!</h2>
     </div>
   );
 };

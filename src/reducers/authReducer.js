@@ -1,11 +1,13 @@
 import actionTypes from "../actionConstants";
 const initialState = {
-  signUpSpinner: false
+  authSpinner: false
 };
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOADING_START:
-      return { signUpSpinner: true };
+      return { authSpinner: true };
+    case actionTypes.LOADING_STOP:
+      return { authSpinner: false };
     default:
       return { ...state };
   }

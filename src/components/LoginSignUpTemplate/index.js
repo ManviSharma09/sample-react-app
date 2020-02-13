@@ -1,11 +1,13 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React from "react";
 import styled from "styled-components";
-import { reduxForm } from "redux-form";
-import photo from "../../utils/images/wallpaper.jpg";
 import { Link } from "react-router-dom";
-import { signUpFormData, loginFormData } from "../../utils/constants";
-import InputFieldForForm from "./InputFieldForForm";
+import { useSelector } from "react-redux";
 import user from "../../utils/images/user.png";
+import InputFieldForForm from "./InputFieldForForm";
+import photo from "../../utils/images/wallpaper.jpg";
+import ActivityIndicator from "../ActivityIndicator";
+import { signUpFormData, loginFormData } from "../../utils/constants";
+
 const OuterDiv = styled.div`
   display: flex;
   align-items: flex-end;
@@ -40,7 +42,7 @@ const Button = styled.button`
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
   font-size: 1em;
-  margin-top: 2em;
+  margin-top: 1em;
   margin-left: 1em;
   margin-right: 1em;
   margin-bottom: 2em;
@@ -79,7 +81,14 @@ const StyledLink = styled(Link)`
   font-weight: bold;
 `;
 
-const LoginSignUpTemplate = ({ formName, handleSubmit }) => {
+const SpinnerContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+`;
+
+const LoginSignUpTemplate = ({ formName, onSubmit }) => {
   const formToShow = formName === "SignUp" ? signUpFormData : loginFormData;
 
   return (
@@ -89,7 +98,7 @@ const LoginSignUpTemplate = ({ formName, handleSubmit }) => {
           <PhotoDiv />
         </ProfileDiv>
         <StyledHeading>{formName}</StyledHeading>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={onSubmit}>
           {formToShow.map(item => {
             return (
               <InputFieldForForm
@@ -101,6 +110,13 @@ const LoginSignUpTemplate = ({ formName, handleSubmit }) => {
               />
             );
           })}
+          {useSelector(state =>
+            state.auth.authSpinner === true ? (
+              <SpinnerContainer>
+                <ActivityIndicator />
+              </SpinnerContainer>
+            ) : null
+          )}
 
           <Button type="submit">Submit</Button>
         </form>
@@ -118,6 +134,4 @@ const LoginSignUpTemplate = ({ formName, handleSubmit }) => {
   );
 };
 
-export default reduxForm({
-  form: "signUpLoginForm"
-})(LoginSignUpTemplate);
+export default LoginSignUpTemplate;
