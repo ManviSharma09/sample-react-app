@@ -1,16 +1,16 @@
-import firebase from "firebase";
 import { toastr } from "react-redux-toastr";
 import { push } from "connected-react-router";
 import actionTypes from "../actionConstants/index";
 import { put, takeLatest } from "redux-saga/effects";
+import services from "../services/firebaseServices/index";
 import { startSpinner, stopSpinner } from "../actions/loaderActions";
 
 export function* signUpRequest(action) {
   yield put(startSpinner());
   const { email, password } = action.payload;
   try {
-    yield firebase.auth().createUserWithEmailAndPassword(email, password);
-    const user = yield firebase.auth().currentUser;
+    yield services.auth.signUpUser(email, password);
+    const user = yield services.auth.getCurrentUser();
     if (user) {
       yield put(push("/photoDashboard"));
     }
@@ -25,8 +25,8 @@ export function* loginRequest(action) {
   yield put(startSpinner());
   const { email, password } = action.payload;
   try {
-    yield firebase.auth().signInWithEmailAndPassword(email, password);
-    const user = yield firebase.auth().currentUser;
+    yield services.auth.signInUser(email, password);
+    const user = yield services.auth.getCurrentUser();
     if (user) {
       yield put(push("/photoDashboard"));
     }
@@ -39,10 +39,11 @@ export function* loginRequest(action) {
 
 export function* signOutRequest(action) {
   try {
-    yield firebase.auth().signOut();
+    yield services.auth.signOutUser();
     yield put(push("/login"));
   } catch (e) {
     console.log("error is", e);
+    toastr.error(`${e}`);
   }
 }
 
