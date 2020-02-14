@@ -2,7 +2,7 @@ import React from "react";
 import { reduxForm } from "redux-form";
 import { withRouter } from "react-router-dom";
 import { formConstants } from "../../utils/constants";
-import { signUpRequest } from "../../redux/actions/authActions";
+import { signUpRequest } from "../../actions/authActions";
 import LoginSignUpTemplate from "../../components/LoginSignUpTemplate";
 
 let SignUp = props => {
