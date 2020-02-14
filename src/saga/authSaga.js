@@ -15,7 +15,6 @@ export function* signUpRequest(action) {
       yield put(push("/photoDashboard"));
     }
   } catch (e) {
-    console.log("error is", e);
     toastr.error(`${e}`);
   }
   yield put(stopSpinner());
@@ -31,7 +30,6 @@ export function* loginRequest(action) {
       yield put(push("/photoDashboard"));
     }
   } catch (e) {
-    console.log("error is", e);
     toastr.error(`${e}`);
   }
   yield put(stopSpinner());
@@ -42,7 +40,6 @@ export function* signOutRequest(action) {
     yield services.auth.signOutUser();
     yield put(push("/login"));
   } catch (e) {
-    console.log("error is", e);
     toastr.error(`${e}`);
   }
 }
