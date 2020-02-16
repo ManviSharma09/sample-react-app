@@ -8,8 +8,8 @@ let Login = props => {
   const { handleSubmit } = props;
   return <LoginSignUpTemplate formName="Login" onSubmit={handleSubmit} />;
 };
-const onSubmit = (event, dispatch) => {
-  dispatch(loginRequest(event));
+const onSubmit = (values, dispatch) => {
+  dispatch(loginRequest(values));
 };
 Login = reduxForm({
   form: formConstants.loginFormConst,

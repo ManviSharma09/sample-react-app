@@ -6,7 +6,7 @@ import { signOutRequest } from "../../actions/authActions";
 
 const HeaderDiv = styled.div`
   height: 60px;
-  background-color: #cff89d;
+  background-color: #2b2621;
 `;
 
 const StyledIcon = styled.img`
@@ -26,7 +26,6 @@ const Header = () => {
         src={settingsIcon}
         alt="settings icon"
         onClick={() => {
-          console.log("Entered here");
           dispatch(signOutRequest());
         }}
       ></StyledIcon>
