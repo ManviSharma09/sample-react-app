@@ -9,6 +9,7 @@ const SpinnerDiv = styled.div`
   border: 5px solid #f3f3f3;
   border-radius: 50%;
   border-top: 5px solid #f4e14b;
+  border-bottom: 5px solid #f4e14b;
   width: 30px;
   height: 30px;
   animation: ${spin} 1s linear infinite;
