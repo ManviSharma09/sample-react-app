@@ -7,9 +7,10 @@ export const signUpRequest = data => {
   };
 };
 
-export const signUpSuccess = () => {
+export const signUpSuccess = data => {
   return {
-    type: actionTypes.SIGN_UP_SUCCESS
+    type: actionTypes.SIGN_UP_SUCCESS,
+    payload: data
   };
 };
 
@@ -26,9 +27,10 @@ export const loginRequest = data => {
   };
 };
 
-export const loginSuccess = () => {
+export const loginSuccess = data => {
   return {
-    type: actionTypes.LOGIN_SUCCESS
+    type: actionTypes.LOGIN_SUCCESS,
+    payload: data
   };
 };
 

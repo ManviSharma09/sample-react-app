@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import * as firebase from "firebase";
 import "./index.css";
 
 import App from "./App";
@@ -8,8 +9,13 @@ import store from "./store";
 import history from "./store/history";
 import { Provider } from "react-redux";
 import ReduxToastr from "react-redux-toastr";
+import firebaseConfig from "./components/Firebase/index";
 import { ConnectedRouter } from "connected-react-router";
 import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 ReactDOM.render(
   <Provider store={store}>

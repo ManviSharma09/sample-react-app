@@ -1,12 +1,26 @@
 import React, { useEffect } from "react";
-import AppRoutes from "./routes";
 import * as firebase from "firebase";
-import firebaseConfig from "./components/Firebase";
+import { useDispatch } from "react-redux";
+import { loginSuccess, signOutRequest } from "./actions/authActions";
+import AppRoutes from "./routes";
 
 const App = () => {
+  const dispatch = useDispatch();
   useEffect(() => {
-    firebase.initializeApp(firebaseConfig);
-  }, []);
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        dispatch(
+          loginSuccess({
+            userId: user.uid,
+            photoUrl: user.photoURL,
+            displayName: user.displayName
+          })
+        );
+      } else if (!user) {
+        dispatch(signOutRequest());
+      }
+    });
+  });
   return <AppRoutes />;
 };
 
