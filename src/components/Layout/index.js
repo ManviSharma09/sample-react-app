@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import { getUserData } from "../../actions/dataFetchingActions";
+import { useSelector } from "react-redux";
 
 import Header from "../Header";
 
@@ -13,19 +12,12 @@ const LayoutContainer = styled.div`
 `;
 
 const Layout = props => {
-  const dispatch = useDispatch();
   const { userDetails } = useSelector(state => ({
     userDetails: state.auth.userDetails
   }));
-  useEffect(() => {
-    if (userDetails.userId) {
-      console.log("Entered here", userDetails.userId);
-      dispatch(getUserData(userDetails.userId));
-    }
-  });
   return (
     <LayoutContainer>
-      <Header />
+      <Header userDetails={userDetails} />
       {props.children}
     </LayoutContainer>
   );

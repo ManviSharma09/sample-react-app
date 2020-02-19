@@ -1,2 +1,2 @@
-const asyncAction = ["SIGN_UP", "LOGIN", "SIGN_OUT", "GET_USER_DATA"];
+const asyncAction = ["SIGN_UP", "LOGIN", "SIGN_OUT"];
 export default asyncAction;
