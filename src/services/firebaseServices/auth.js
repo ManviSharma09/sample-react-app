@@ -1,5 +1,4 @@
 import firebase from "firebase";
-import userImage from "../../utils/images/user.png";
 
 export const signUpUser = async (email, password) => {
   await firebase.auth().createUserWithEmailAndPassword(email, password);
@@ -21,8 +20,7 @@ export const signOutUser = async () => {
 export const updateUserProfile = async (firstName, lastName, user) => {
   var displayName = firstName + lastName;
   await user.updateProfile({
-    displayName: displayName,
-    photoURL: userImage
+    displayName: displayName
   });
 };
 
