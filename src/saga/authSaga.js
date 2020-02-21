@@ -19,6 +19,7 @@ export function* signUpRequest(action) {
     yield put(
       signUpSuccess({ userId: uid, photoUrl, displayName: user.displayName })
     );
+    localStorage.setItem("AUTH_TOKEN", true);
     yield put(push("/photoDashboard"));
   } catch (e) {
     toastr.error(`${e}`);
@@ -32,6 +33,7 @@ export function* loginRequest(action) {
   try {
     yield services.auth.signInUser(email, password);
     const user = yield services.auth.getCurrentUser();
+    console.log("Entered here login", user);
     yield put(
       loginSuccess({
         userId: user.uid,
@@ -39,6 +41,7 @@ export function* loginRequest(action) {
         displayName: user.displayName
       })
     );
+    localStorage.setItem("AUTH_TOKEN", true);
     yield put(push("/photoDashboard"));
   } catch (e) {
     toastr.error(`${e}`);
@@ -49,6 +52,7 @@ export function* loginRequest(action) {
 export function* signOutRequest(action) {
   try {
     yield services.auth.signOutUser();
+    localStorage.setItem("AUTH_TOKEN", false);
     yield put(push("/login"));
   } catch (e) {
     toastr.error(`${e}`);
