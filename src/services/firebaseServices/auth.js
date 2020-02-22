@@ -16,9 +16,18 @@ export const signInUser = async (email, password) => {
 export const signOutUser = async () => {
   await firebase.auth().signOut();
 };
+
+export const updateUserProfile = async (firstName, lastName, user) => {
+  var displayName = firstName + lastName;
+  await user.updateProfile({
+    displayName: displayName
+  });
+};
+
 export default {
   signInUser,
   signUpUser,
   signOutUser,
-  getCurrentUser
+  getCurrentUser,
+  updateUserProfile
 };
