@@ -18,21 +18,23 @@ const Input = styled.input`
   width: 250px;
   height: 25px;
   border-radius: 5px;
-  &:focus {
-    border-color: rgba(0, 0, 0, 0.5);
-    background-color: rgba(0, 0, 0, 0.5);
-  }
+  font-size: 16px;
+  font-weight: 600;
+  outline: none;
 `;
 const ErrorDiv = styled.div`
   font-weight: bold;
-  font-size: 13px;
+  font-size: 15px;
+  color: red;
+  text-align: right;
+  height: 15px;
 `;
 
 const renderField = ({ input, type, meta: { touched, error } }) => {
   return (
     <div>
       <Input {...input} type={type} />
-      {touched && error && <ErrorDiv>{error}</ErrorDiv>}
+      <ErrorDiv>{touched && error}</ErrorDiv>
     </div>
   );
 };

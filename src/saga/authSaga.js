@@ -33,7 +33,6 @@ export function* loginRequest(action) {
   try {
     yield services.auth.signInUser(email, password);
     const user = yield services.auth.getCurrentUser();
-    console.log("Entered here login", user);
     yield put(
       loginSuccess({
         userId: user.uid,

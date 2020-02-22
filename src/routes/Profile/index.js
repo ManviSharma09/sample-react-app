@@ -1,11 +1,11 @@
 import React from "react";
 import Layout from "../../components/Layout";
 
-const About = () => {
+const Profile = () => {
   return (
     <Layout>
-      <h2>About</h2>;
+      <h2>Profile</h2>;
     </Layout>
   );
 };
-export default About;
+export default Profile;
