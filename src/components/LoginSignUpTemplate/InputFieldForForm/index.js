@@ -5,13 +5,14 @@ import { Field } from "redux-form";
 const Label = styled.label`
   font-size: 15px;
   font-weight: bold;
+  margin-bottom: 5px;
   color: rgba(0, 0, 0, 0.9);
 `;
 
 const FormEntryDiv = styled.div`
   display: flex;
-  flex-direction: column;
   margin-top: 10px;
+  flex-direction: column;
 `;
 
 const Input = styled.input`

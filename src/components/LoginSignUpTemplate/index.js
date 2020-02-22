@@ -36,11 +36,13 @@ const FormDiv = styled.div`
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 30px;
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(167, 153, 48, 0.25);
 `;
 
 const StyledHeading = styled.h1`
   display: flex;
+  margin-top: 5px;
+  margin-bottom: 10px;
   justify-content: center;
   color: rgba(0, 0, 0, 0.9);
 `;
