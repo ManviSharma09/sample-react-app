@@ -17,7 +17,13 @@ export function* signUpRequest(action) {
     const photoUrl = user.photoURL;
     yield services.fireStore.saveUserBasicProfile(uid, photoUrl);
     yield put(
-      signUpSuccess({ userId: uid, photoUrl, displayName: user.displayName })
+      signUpSuccess({
+        userId: user.uid,
+        photoUrl: user.photoURL,
+        displayName: user.displayName,
+        email: user.email,
+        phoneNumber: user.phoneNumber
+      })
     );
     localStorage.setItem("AUTH_TOKEN", true);
     yield put(push("/photoDashboard"));
@@ -37,7 +43,9 @@ export function* loginRequest(action) {
       loginSuccess({
         userId: user.uid,
         photoUrl: user.photoURL,
-        displayName: user.displayName
+        displayName: user.displayName,
+        email: user.email,
+        phoneNumber: user.phoneNumber
       })
     );
     localStorage.setItem("AUTH_TOKEN", true);

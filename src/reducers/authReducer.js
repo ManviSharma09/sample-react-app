@@ -4,7 +4,9 @@ const initialState = {
   userDetails: {
     userId: "",
     displayName: "",
-    profileUrl: ""
+    profileUrl: "",
+    email: "",
+    phoneNumber: 0
   }
 };
 const authReducer = (state = initialState, action) => {

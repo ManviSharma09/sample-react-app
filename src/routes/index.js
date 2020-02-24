@@ -7,7 +7,6 @@ import Profile from "./Profile";
 
 const PrivateRoute = ({ component: Component, ...props }) => {
   const token = localStorage.getItem("AUTH_TOKEN");
-  console.log("token", token);
   return (
     <Route
       {...props}
