@@ -5,10 +5,11 @@ import { useSelector } from "react-redux";
 import Header from "../Header";
 
 const LayoutContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  width: 100vw;
   height: 100vh;
+  display: flex;
   overflow-y: scroll;
+  flex-direction: column;
 `;
 
 const Layout = props => {

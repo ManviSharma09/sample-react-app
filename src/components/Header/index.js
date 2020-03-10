@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
 import CustomDropDown from "../CustomDropDown";
-import userIcon from "../../utils/images/user.png";
 import { dropDownItems } from "./dropdownConstants";
-import { signOutRequest } from "../../actions/authActions";
-import settingsIcon from "../../utils/images/settingsIcon.svg";
+import defaultUser from "../../utils/images/defaultUser.webp";
 
 const HeaderDiv = styled.div`
   height: 60px;
@@ -25,12 +22,6 @@ const Name = styled.p`
   font-weight: bold;
 `;
 
-const StyledIcon = styled.img`
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-`;
-
 const ImgDiv = styled.div`
   width: 40px;
   height: 40px;
@@ -44,7 +35,6 @@ const StyledImage = styled.img`
 `;
 
 const Header = props => {
-  const dispatch = useDispatch();
   const { userDetails } = props;
   const [userName, updateUserName] = useState("");
   const [photoUrl, updatePhotoUrl] = useState("");
@@ -55,7 +45,7 @@ const Header = props => {
     updateUserName(name);
     let photoLink = userDetails.photoUrl;
     if (!photoLink) {
-      photoLink = userIcon;
+      photoLink = defaultUser;
     }
     updatePhotoUrl(photoLink);
   }, [userDetails]);
@@ -63,13 +53,6 @@ const Header = props => {
   return (
     <HeaderDiv>
       <Name>{userName}</Name>
-      <StyledIcon
-        src={settingsIcon}
-        alt="settings icon"
-        onClick={() => {
-          dispatch(signOutRequest());
-        }}
-      ></StyledIcon>
       <CustomDropDown
         faceComponent={
           <ImgDiv

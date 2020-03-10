@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import history from "../../store/history";
+import { dropDownItems } from "../Header/dropdownConstants";
+import { signOutRequest } from "../../actions/authActions";
 
 const DropDownDiv = styled.div`
   width: 200px;
@@ -12,39 +16,52 @@ const DropDownDiv = styled.div`
 `;
 
 const DropDownItemContainer = styled.div`
+  height: 45px;
   display: flex;
-  flex-direction: row;
-  height: 30px;
-  border-bottom: 1px solid lightgrey;
+  cursor: pointer;
+  padding-left: 10px;
+  padding-right: 20px;
   align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgrey;
 `;
 
 const ImgDiv = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
 `;
 
-const DropDownItem = props => {
-  console.log("props here are", props);
+const LabelDiv = styled.div`
+  font-size: 20px;
+  font-weight: 600;
+`;
 
+const DropDownItem = props => {
   return (
-    <DropDownItemContainer onClick={props.action}>
+    <DropDownItemContainer
+      onClick={() => {
+        props.action();
+      }}
+    >
       <ImgDiv src={props.image} alt="icon"></ImgDiv>
-      <div>{props.label}</div>
+      <LabelDiv>{props.label}</LabelDiv>
     </DropDownItemContainer>
   );
 };
 
 const CustomDropDown = props => {
+  const dispatch = useDispatch();
   const [dropDownOpen, updateDropDownOpen] = useState(false);
 
-  const someFunction = () => {
-    const anptherFunction = () => {
-      console.log("enterde dunctio");
-    };
-
-    return anptherFunction;
+  const actionToDispatch = label => {
+    if (label === dropDownItems[0].label) {
+      history.push("/profile");
+    }
+    if (label === dropDownItems[1].label) {
+      return dispatch(signOutRequest());
+    }
   };
 
   return (
@@ -61,7 +78,7 @@ const CustomDropDown = props => {
                 key={dataItem.label}
                 image={dataItem.image}
                 label={dataItem.label}
-                action={someFunction()}
+                action={() => actionToDispatch(dataItem.label)}
               />
             );
           })}

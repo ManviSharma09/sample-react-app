@@ -4,10 +4,13 @@ const initialState = {
   userDetails: {
     userId: "",
     displayName: "",
-    profileUrl: ""
+    profileUrl: "",
+    email: "",
+    phoneNumber: 0
   }
 };
 const authReducer = (state = initialState, action) => {
+  console.log("action", action);
   switch (action.type) {
     case actionTypes.LOADING_START:
       return { ...state, authSpinner: true };

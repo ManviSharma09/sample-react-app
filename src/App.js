@@ -14,7 +14,9 @@ const App = () => {
           loginSuccess({
             userId: user.uid,
             photoUrl: user.photoURL,
-            displayName: user.displayName
+            displayName: user.displayName,
+            email: user.email,
+            phoneNumber: user.phoneNumber
           })
         );
       } else if (!user && (token === true || token === "true")) {
