@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Layout from "../../components/Layout";
 import { profileConstants } from "./profileConstants";
 import defaultUser from "../../utils/images/defaultUser.webp";
+import { updateDisplayProfile } from "../../actions/updateDisplayProfileActions";
 
 const ContainerDiv = styled.div`
   height: 100%;
@@ -18,7 +19,6 @@ const ProfileImage = styled.img`
   width: 225px;
   height: 225px;
   border-radius: 25%;
-  background-color: red;
   background-image: url(${defaultUser});
   background-repeat: no-repeat;
   background-size: cover;
@@ -78,10 +78,13 @@ const Profile = () => {
   const [displayNameValue, updateDisplayNameValue] = useState(displayName);
   const [photoUrlValue, updatePhotoUrlValue] = useState(photoUrl);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     updateEmail(email);
     updatePhoneNumber(phoneNumber);
     updateDisplayNameValue(displayName);
+    updatePhotoUrlValue(photoUrl);
   }, [email, phoneNumber, displayName]);
 
   const getInputValue = value => {
@@ -132,7 +135,20 @@ const Profile = () => {
               </ProfileEntity>
             );
           })}
-          <Button>Save</Button>
+          <Button
+            onClick={() => {
+              dispatch(
+                updateDisplayProfile({
+                  emailValue,
+                  phoneNumberValue,
+                  displayNameValue,
+                  photoUrlValue
+                })
+              );
+            }}
+          >
+            Save
+          </Button>
         </DetailsSection>
       </ContainerDiv>
     </Layout>

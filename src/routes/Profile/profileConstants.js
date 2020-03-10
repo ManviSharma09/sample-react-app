@@ -11,7 +11,7 @@ export const profileConstants = [
   },
   {
     label: "Phone Number",
-    inputType: "text",
+    inputType: "number",
     value: "phoneNumber"
   }
 ];
