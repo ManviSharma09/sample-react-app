@@ -1,28 +1,50 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import PhotoDashboard from "./PhotoDashboard";
 import About from "./About";
 
-const AppRoutes = props => {
+const PrivateRoute = ({ component: Component, ...props }) => {
+  const token = localStorage.getItem("AUTH_TOKEN");
+  console.log("token", token);
+  return (
+    <Route
+      {...props}
+      render={() => {
+        if (token === true || token === "true") {
+          return <Component {...props} />;
+        } else {
+          return <Redirect to="/login" />;
+        }
+      }}
+    />
+  );
+};
+
+const NonPrivateRoute = ({ component: Component, ...props }) => {
+  const token = localStorage.getItem("AUTH_TOKEN");
+  return (
+    <Route
+      {...props}
+      render={() => {
+        if (token !== true && token !== "true") {
+          return <Component {...props} />;
+        } else {
+          return <Redirect to="/photoDashboard" />;
+        }
+      }}
+    />
+  );
+};
+const AppRoutes = () => {
   return (
     <Switch>
-      <Route exact path="/">
-        <Login />
-      </Route>
-      <Route exact path="/login">
-        <Login />
-      </Route>
-      <Route exact path="/signUp">
-        <SignUp />
-      </Route>
-      <Route exact path="/photoDashboard">
-        <PhotoDashboard />
-      </Route>
-      <Route exact path="/about">
-        <About />
-      </Route>
+      <NonPrivateRoute exact path="/" component={Login} />
+      <NonPrivateRoute exact path="/login" component={Login} />
+      <NonPrivateRoute exact path="/signUp" component={SignUp} />
+      <PrivateRoute exact path="/photoDashboard" component={PhotoDashboard} />
+      <PrivateRoute exact path="/about" component={About} />
     </Switch>
   );
 };

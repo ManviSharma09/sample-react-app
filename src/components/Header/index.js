@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
+import CustomDropDown from "../CustomDropDown";
 import userIcon from "../../utils/images/user.png";
 import { dropDownItems } from "./dropdownConstants";
 import { signOutRequest } from "../../actions/authActions";
@@ -69,13 +70,18 @@ const Header = props => {
           dispatch(signOutRequest());
         }}
       ></StyledIcon>
-      <ImgDiv
-        onClick={() => {
-          updateDropDownOpen(!dropDownOpen);
-        }}
-      >
-        <StyledImage src={photoUrl} alt="profile-pic" />
-      </ImgDiv>
+      <CustomDropDown
+        faceComponent={
+          <ImgDiv
+            onClick={() => {
+              updateDropDownOpen(!dropDownOpen);
+            }}
+          >
+            <StyledImage src={photoUrl} alt="profile-pic" />
+          </ImgDiv>
+        }
+        dataList={dropDownItems}
+      />
     </HeaderDiv>
   );
 };

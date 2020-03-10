@@ -8,7 +8,8 @@ const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
-      if (user) {
+      const token = localStorage.getItem("AUTH_TOKEN");
+      if (user && (token === true || token === "true")) {
         dispatch(
           loginSuccess({
             userId: user.uid,
@@ -16,7 +17,7 @@ const App = () => {
             displayName: user.displayName
           })
         );
-      } else if (!user) {
+      } else if (!user && (token === true || token === "true")) {
         dispatch(signOutRequest());
       }
     });
