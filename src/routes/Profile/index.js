@@ -7,9 +7,9 @@ import defaultUser from "../../utils/images/defaultUser.webp";
 import { updateDisplayProfile } from "../../actions/updateDisplayProfileActions";
 
 const ContainerDiv = styled.div`
-  height: 100%;
-  padding: 20px;
+  flex-grow:1;
   display: flex;
+  padding: 20px;
   align-items: center;
   flex-direction: column;
   background-color: #e1e3e9;
